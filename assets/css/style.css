@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'ringBearer';
+    src: url('ringBearer.ttf');
+}
+
+body {
+	font-family: ringBearer;
+	color: gold;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	background-image: url(../images/lotr.jpg);
+}
+
+h1 {
+	font-size: 70px;
+
+}
+
+.timeRemaining {
+	font-size: 25px;
+}
+
+.questionSection {
+	font-size: 50px;
+}
