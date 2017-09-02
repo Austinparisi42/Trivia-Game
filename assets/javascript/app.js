@@ -139,25 +139,21 @@ $(document).ready(function() {
             wrong++;
             console.log(wrong);
         }
-        currentQ++;
-        askQuestion();
+        
+        if (currentQ < questions.length) {
+            currentQ++;
+            console.log("currentQ", currentQ);
 
+            askQuestion();
+        }
 
+        else {
 
-        // if (currentQ <= questions.length) {
-        //     currentQ++;
-        //     console.log("currentQ", currentQ);
-
-        //     askQuestion();
-        // }
-
-        // else {
-
-        //     // display right/wrong
-        //     $("#timeRemaining").html("You answered " + correct + " questions right and " + wrong + " questions wrong. Press 'Start' to try again.");
-        //     // prompt retry
+            // display right/wrong
+            $("#timeRemaining").html("You answered " + correct + " questions right and " + wrong + " questions wrong. Press 'Start' to try again.");
+            // prompt retry
             
-        // }
+        }
         
 
         
