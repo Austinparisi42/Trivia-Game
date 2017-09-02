@@ -83,7 +83,7 @@ $(document).ready(function() {
             timer--;
             if (timer === 0) {
                 currentQ++;
-                countdown();
+                askQuestion();
                 
                 
             }
@@ -131,6 +131,12 @@ $(document).ready(function() {
         console.log("currentQ", currentQ);
 
         askQuestion();
+
+        if (currentQ > questions.length) {
+            // display right/wrong
+            $("#timeRemaining").html("Time's up! You answered " + correct + " questions right and " + wrong + " questions wrong. Try again?");
+            // prompt retry
+        }
     });
 
     
