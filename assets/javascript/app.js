@@ -82,7 +82,9 @@ $(document).ready(function() {
         interval = setInterval(function() {
             timer--;
             if (timer === 0) {
-                $("#timeRemaining").html("Time's up!");
+                currentQ++;
+                countdown();
+                
                 
             }
             if (timer > 0) {
