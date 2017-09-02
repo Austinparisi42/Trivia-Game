@@ -63,13 +63,20 @@ $(document).ready(function() {
         }
     ];
 
-    
+    function start() {
+        correct = 0;
+        wrong = 0;
+        currentQ = 0;
+    };
 
     $(".buttonStart").click(function() {
+        start();
         
         
         askQuestion();
     });
+
+
 
 
 
@@ -134,7 +141,7 @@ $(document).ready(function() {
 
         if (currentQ > questions.length) {
             // display right/wrong
-            $("#timeRemaining").html("Time's up! You answered " + correct + " questions right and " + wrong + " questions wrong. Try again?");
+            $("#timeRemaining").html("Time's up! You answered " + correct + " questions right and " + wrong + " questions wrong. Press 'Start' to try again.");
             // prompt retry
         }
     });
