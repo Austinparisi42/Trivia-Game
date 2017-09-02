@@ -72,7 +72,6 @@ $(document).ready(function() {
     $(".buttonStart").click(function() {
         start();
         
-        
         askQuestion();
     });
 
@@ -88,12 +87,19 @@ $(document).ready(function() {
 
         interval = setInterval(function() {
             timer--;
-            if (timer === 0) {
+            if (timer === 0 && currentQ < questions.length) {
                 currentQ++;
                 askQuestion();
                 
                 
             }
+            else {
+
+            // display right/wrong
+            $("#timeRemaining").html("You answered " + correct + " questions right and " + wrong + " questions wrong. Press 'Start' to try again.");
+            // prompt retry
+            
+        }
             if (timer > 0) {
                 $("#timeRemaining").html("Time Remaining: " + timer);
             }
@@ -133,17 +139,31 @@ $(document).ready(function() {
             wrong++;
             console.log(wrong);
         }
-
         currentQ++;
-        console.log("currentQ", currentQ);
-
         askQuestion();
 
-        if (currentQ > questions.length) {
-            // display right/wrong
-            $("#timeRemaining").html("Time's up! You answered " + correct + " questions right and " + wrong + " questions wrong. Press 'Start' to try again.");
-            // prompt retry
-        }
+
+
+        // if (currentQ <= questions.length) {
+        //     currentQ++;
+        //     console.log("currentQ", currentQ);
+
+        //     askQuestion();
+        // }
+
+        // else {
+
+        //     // display right/wrong
+        //     $("#timeRemaining").html("You answered " + correct + " questions right and " + wrong + " questions wrong. Press 'Start' to try again.");
+        //     // prompt retry
+            
+        // }
+        
+
+        
+        
+
+        
     });
 
     
