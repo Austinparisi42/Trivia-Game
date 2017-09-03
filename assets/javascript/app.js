@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     var interval;
 
-    var timer = 30;
+    var timer;
 
     var correct = 0;
 
@@ -63,6 +63,9 @@ $(document).ready(function() {
         }
     ];
 
+    $("#timeRemaining").hide();
+    $(".answerSection").hide();
+
     function start() {
         correct = 0;
         wrong = 0;
@@ -71,6 +74,10 @@ $(document).ready(function() {
 
     $(".buttonStart").click(function() {
         start();
+        $(".buttonStart").hide();
+        $("#timeRemaining").show();
+        $(".answerSection").show();
+        $(".questionSection").show();
         
         askQuestion();
     });
@@ -83,26 +90,33 @@ $(document).ready(function() {
 
     function countdown() {
         clearInterval(interval);
-        timer = 30;
+        timer = 10;
 
         interval = setInterval(function() {
             timer--;
-            if (timer === 0 && currentQ < questions.length) {
+            if (timer === 0 && currentQ < 9) {
+                wrong++;
                 currentQ++;
                 askQuestion();
                 
                 
             }
+            else if (timer > 0) {
+                $("#timeRemaining").html("Time Remaining: " + timer);
+            }
             else {
 
             // display right/wrong
             $("#timeRemaining").html("You answered " + correct + " questions right and " + wrong + " questions wrong. Press 'Start' to try again.");
-            // prompt retry
+            
+            clearInterval(interval);
+            $(".buttonStart").show();
+            $(".answerSection").hide();
+            $(".questionSection").hide();
             
         }
-            if (timer > 0) {
-                $("#timeRemaining").html("Time Remaining: " + timer);
-            }
+
+            
             
         }, 1000);
     };
@@ -124,7 +138,11 @@ $(document).ready(function() {
 
     $(".answerButton").on("click",function() {
         console.log($(this).text());
-        var correctAnswer = questions[currentQ].answer;
+        
+        if (currentQ < 10){ 
+            var correctAnswer = questions[currentQ].answer;
+        }
+        // var correctAnswer = questions[currentQ].answer;
         console.log(questions[currentQ].choices[correctAnswer]);
 
         
@@ -140,7 +158,7 @@ $(document).ready(function() {
             console.log(wrong);
         }
         
-        if (currentQ < questions.length) {
+        if (currentQ < 9) {
             currentQ++;
             console.log("currentQ", currentQ);
 
@@ -151,7 +169,14 @@ $(document).ready(function() {
 
             // display right/wrong
             $("#timeRemaining").html("You answered " + correct + " questions right and " + wrong + " questions wrong. Press 'Start' to try again.");
+            clearInterval(interval);
+            $(".buttonStart").show();
+            $(".answerSection").hide();
+            $(".questionSection").hide();
+            
             // prompt retry
+            // clear question and buttons
+            // hide unhide start
             
         }
         
